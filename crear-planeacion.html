@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Crear Planeación</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Crear Planeación</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="logo">PRAE · Ecosistema</div>
-    </nav>
-  </header>
 
-  <main class="container">
-    <h1>Crear nueva planeación</h1>
+<h1>Crear una Nueva Planeación</h1>
 
-    <form id="form-planeacion" class="card">
-      <label>Título:</label>
-      <input type="text" id="titulo" required>
+<form id="formPlaneacion">
 
-      <label>Grado:</label>
-      <input type="text" id="grado" required>
+    <label>Título</label>
+    <input type="text" id="titulo" required>
 
-      <label>Área:</label>
-      <input type="text" id="area" required>
+    <label>Grado</label>
+    <select id="grado">
+        <option>6°</option>
+        <option>7°</option>
+        <option>8°</option>
+        <option>9°</option>
+        <option>10°</option>
+        <option>11°</option>
+    </select>
 
-      <label>Descripción:</label>
-      <textarea id="descripcion"></textarea>
+    <label>Fecha</label>
+    <input type="date" id="fecha">
 
-      <label>
-        <input type="checkbox" id="prae-check">
-        Integrar PRAE
-      </label>
+    <label>Problema Ambiental</label>
+    <input type="text" id="problema">
 
-      <button class="btn" type="submit">Guardar</button>
-    </form>
-  </main>
+    <label>Actividades</label>
+    <textarea id="actividades"></textarea>
 
-  <script src="js/planeaciones.js"></script>
+    <label>¿Incluye PRAE?</label>
+    <select id="prae">
+        <option value="true">Sí</option>
+        <option value="false">No</option>
+    </select>
+
+    <button type="submit">Guardar Planeación</button>
+</form>
+
+<script src="js/crear-planeacion.js"></script>
 </body>
 </html>

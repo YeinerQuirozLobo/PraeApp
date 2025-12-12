@@ -1,48 +1,45 @@
-// Guardar planeaciones en localStorage
-function getPlaneaciones() {
-  return JSON.parse(localStorage.getItem("planeaciones")) || [];
+document.addEventListener("DOMContentLoaded", cargarPlaneaciones);
+
+function cargarPlaneaciones() {
+    let planeaciones = JSON.parse(localStorage.getItem("planeaciones")) || [];
+    let tabla = document.getElementById("tablaPlaneaciones");
+
+    tabla.innerHTML = "";
+
+    planeaciones.forEach((p, i) => {
+        let fila = `
+            <tr>
+                <td>${p.titulo}</td>
+                <td>${p.grado}</td>
+                <td>${p.fecha}</td>
+                <td>${p.prae ? "Sí" : "No"}</td>
+                <td>
+                    <button onclick="verPlaneacion(${i})">Ver</button>
+                    <button onclick="eliminarPlaneacion(${i})">Eliminar</button>
+                </td>
+            </tr>`;
+        tabla.innerHTML += fila;
+    });
 }
 
-function savePlaneacion(data) {
-  const lista = getPlaneaciones();
-  lista.push(data);
-  localStorage.setItem("planeaciones", JSON.stringify(lista));
+function buscarPlaneaciones() {
+    let texto = document.getElementById("searchInput").value.toLowerCase();
+    let filas = document.querySelectorAll("#tablaPlaneaciones tr");
+
+    filas.forEach(fila => {
+        let contenido = fila.innerText.toLowerCase();
+        fila.style.display = contenido.includes(texto) ? "" : "none";
+    });
 }
 
-// Listado
-const tabla = document.getElementById("tabla-planeaciones");
-if (tabla) {
-  const datos = getPlaneaciones();
-  datos.forEach(p => {
-    tabla.innerHTML += `
-      <tr>
-        <td>${p.titulo}</td>
-        <td>${p.grado}</td>
-        <td>${p.area}</td>
-        <td>${p.fecha}</td>
-        <td>${p.prae ? "Sí" : "No"}</td>
-      </tr>
-    `;
-  });
+function verPlaneacion(index) {
+    localStorage.setItem("planeacionSeleccionada", index);
+    window.location.href = "ver-planeacion.html";
 }
 
-// Creación
-const form = document.getElementById("form-planeacion");
-if (form) {
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    
-    const nueva = {
-      titulo: document.getElementById("titulo").value,
-      grado: document.getElementById("grado").value,
-      area: document.getElementById("area").value,
-      descripcion: document.getElementById("descripcion").value,
-      prae: document.getElementById("prae-check").checked,
-      fecha: new Date().toISOString().split("T")[0]
-    };
-
-    savePlaneacion(nueva);
-    alert("Planeación guardada");
-    window.location.href = "planeaciones.html";
-  });
+function eliminarPlaneacion(index) {
+    let planeaciones = JSON.parse(localStorage.getItem("planeaciones")) || [];
+    planeaciones.splice(index, 1);
+    localStorage.setItem("planeaciones", JSON.stringify(planeaciones));
+    cargarPlaneaciones();
 }

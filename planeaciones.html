@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mis Planeaciones</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <title>Mis Planeaciones</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-  <header>
-    <nav class="navbar">
-      <div class="logo">PRAE · Ecosistema</div>
-      <ul>
-        <li><a class="active" href="planeaciones.html">Planeaciones</a></li>
-        <li><a href="prae.html">PRAE</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main class="container">
-    <h1>Mis planeaciones</h1>
+    <header>
+        <h1>Mis Planeaciones</h1>
+        <button onclick="window.location.href='crear-planeacion.html'">+ Nueva Planeación</button>
+    </header>
 
-    <a class="btn" href="crear-planeacion.html">Nueva planeación</a>
+    <section class="search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar por tema o grado..." onkeyup="buscarPlaneaciones()">
+    </section>
 
-    <table class="tabla">
-      <thead>
-        <tr>
-          <th>Título</th>
-          <th>Grado</th>
-          <th>Área</th>
-          <th>Fecha</th>
-          <th>Integración PRAE</th>
-        </tr>
-      </thead>
-      <tbody id="tabla-planeaciones"></tbody>
-    </table>
-  </main>
+    <section>
+        <table class="tabla-planeaciones">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Grado</th>
+                    <th>Fecha</th>
+                    <th>PRAE</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaPlaneaciones">
+                <!-- Se cargan desde JavaScript -->
+            </tbody>
+        </table>
+    </section>
 
-  <script src="js/planeaciones.js"></script>
+    <script src="js/planeaciones.js"></script>
 </body>
 </html>
