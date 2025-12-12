@@ -3,34 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Ver Planeación</title>
-    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<h1>Detalle de la Planeación</h1>
+<div id="contenido"></div>
 
-<div id="detallePlaneacion"></div>
+<button onclick="location.href='planeaciones.html'">Volver</button>
 
-<button onclick="window.location.href='planeaciones.html'">Volver</button>
-
-<script src="js/planeaciones.js"></script>
-
+<script src="js/storage.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let index = localStorage.getItem("planeacionSeleccionada");
-        let planeaciones = JSON.parse(localStorage.getItem("planeaciones")) || [];
-        let p = planeaciones[index];
-
-        document.getElementById("detallePlaneacion").innerHTML = `
-            <h2>${p.titulo}</h2>
-            <p><strong>Grado:</strong> ${p.grado}</p>
-            <p><strong>Fecha:</strong> ${p.fecha}</p>
-            <p><strong>Problema Ambiental:</strong> ${p.problema}</p>
-            <p><strong>Actividades:</strong></p>
-            <pre>${p.actividades}</pre>
-            <p><strong>Incluye PRAE:</strong> ${p.prae ? "Sí" : "No"}</p>
-        `;
-    });
+    const index = localStorage.getItem("planeacionSeleccionada");
+    const lista = getPlaneaciones();
+    const data = lista[index];
+    document.getElementById("contenido").innerHTML = data.planeacion;
 </script>
 
 </body>

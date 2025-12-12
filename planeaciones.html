@@ -3,36 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Mis Planeaciones</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/planeaciones.css">
 </head>
 <body>
 
-    <header>
-        <h1>Mis Planeaciones</h1>
-        <button onclick="window.location.href='crear-planeacion.html'">+ Nueva Planeación</button>
-    </header>
+<h2>Mis Planeaciones</h2>
 
-    <section class="search-bar">
-        <input type="text" id="searchInput" placeholder="Buscar por tema o grado..." onkeyup="buscarPlaneaciones()">
-    </section>
+<button onclick="location.href='chat-planeacion.html'" class="btn-crear">
+    Crear nueva planeación
+</button>
 
-    <section>
-        <table class="tabla-planeaciones">
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Grado</th>
-                    <th>Fecha</th>
-                    <th>PRAE</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tablaPlaneaciones">
-                <!-- Se cargan desde JavaScript -->
-            </tbody>
-        </table>
-    </section>
+<table>
+    <thead>
+        <tr>
+            <th>Grado</th>
+            <th>Asignatura</th>
+            <th>Dimensión PRAE</th>
+            <th>Duración</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tablaPlaneaciones">
+    </tbody>
+</table>
 
-    <script src="js/planeaciones.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/planeaciones.js"></script>
+
 </body>
 </html>

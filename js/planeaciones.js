@@ -1,45 +1,33 @@
-document.addEventListener("DOMContentLoaded", cargarPlaneaciones);
+window.onload = function() {
+    const lista = getPlaneaciones();
+    const tbody = document.getElementById("tablaPlaneaciones");
 
-function cargarPlaneaciones() {
-    let planeaciones = JSON.parse(localStorage.getItem("planeaciones")) || [];
-    let tabla = document.getElementById("tablaPlaneaciones");
-
-    tabla.innerHTML = "";
-
-    planeaciones.forEach((p, i) => {
-        let fila = `
+    lista.forEach((p, i) => {
+        const fila = `
             <tr>
-                <td>${p.titulo}</td>
                 <td>${p.grado}</td>
+                <td>${p.asignatura}</td>
+                <td>${p.dimension}</td>
+                <td>${p.sesiones} sesiones</td>
                 <td>${p.fecha}</td>
-                <td>${p.prae ? "Sí" : "No"}</td>
                 <td>
-                    <button onclick="verPlaneacion(${i})">Ver</button>
-                    <button onclick="eliminarPlaneacion(${i})">Eliminar</button>
+                    <button onclick="ver(${i})">Ver</button>
+                    <button onclick="eliminar(${i})">Eliminar</button>
                 </td>
-            </tr>`;
-        tabla.innerHTML += fila;
+            </tr>
+        `;
+        tbody.innerHTML += fila;
     });
-}
+};
 
-function buscarPlaneaciones() {
-    let texto = document.getElementById("searchInput").value.toLowerCase();
-    let filas = document.querySelectorAll("#tablaPlaneaciones tr");
-
-    filas.forEach(fila => {
-        let contenido = fila.innerText.toLowerCase();
-        fila.style.display = contenido.includes(texto) ? "" : "none";
-    });
-}
-
-function verPlaneacion(index) {
+function ver(index) {
     localStorage.setItem("planeacionSeleccionada", index);
-    window.location.href = "ver-planeacion.html";
+    location.href = "ver-planeacion.html";
 }
 
-function eliminarPlaneacion(index) {
-    let planeaciones = JSON.parse(localStorage.getItem("planeaciones")) || [];
-    planeaciones.splice(index, 1);
-    localStorage.setItem("planeaciones", JSON.stringify(planeaciones));
-    cargarPlaneaciones();
+function eliminar(index) {
+    const lista = getPlaneaciones();
+    lista.splice(index, 1);
+    localStorage.setItem("planeacionesChat", JSON.stringify(lista));
+    location.reload();
 }
