@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Crear Planeación</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">PRAE · Ecosistema</div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Crear nueva planeación</h1>
+
+    <form id="form-planeacion" class="card">
+      <label>Título:</label>
+      <input type="text" id="titulo" required>
+
+      <label>Grado:</label>
+      <input type="text" id="grado" required>
+
+      <label>Área:</label>
+      <input type="text" id="area" required>
+
+      <label>Descripción:</label>
+      <textarea id="descripcion"></textarea>
+
+      <label>
+        <input type="checkbox" id="prae-check">
+        Integrar PRAE
+      </label>
+
+      <button class="btn" type="submit">Guardar</button>
+    </form>
+  </main>
+
+  <script src="js/planeaciones.js"></script>
+</body>
+</html>
